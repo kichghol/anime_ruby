@@ -18,16 +18,15 @@ class AnimeController < ApplicationController
       url,
       headers: {
         'X-RapidAPI-Host' => URI.parse(url).host
-      
       }
-     
     )
     
+		return nil if response.status != 200
     return JSON.parse(response.body)
   end
-  def find_anime(name)
+  def find_anime(title)
     request_api(
-      "http://localhost:5000/users/#{URI.encode(name)}"
+      "http://localhost:5000/api/v1/animes/#{URI.encode(title)}"
     )
   end
 
