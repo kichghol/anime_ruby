@@ -1,5 +1,17 @@
 class AnimeController < ApplicationController
   def index
+    @list = [
+      { 
+        :title => "jimyy"
+      },
+
+      {
+        :title => "nora"
+
+      }
+    ]
+
+
   end
   
   def search

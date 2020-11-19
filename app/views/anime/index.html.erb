@@ -34,26 +34,23 @@
         </tr>
       </thead>
       <tbody>
+      <% @list.each do |anime| %>
+      <% anime.each do |data| %>
+      
         <tr>
           <th scope="row" ><img src="https://i.pinimg.com/736x/fe/de/32/fede32c19d095db0cdd96b86df00beee.jpg" class="img-fluid" alt="Responsive image" style= " width: 50px;
           height: 70px"></th>
-          <td>Naruto</td>
+          <td><%=data %></td>
           <td>Jimzo</td>
           <td>Shanon</td>
           <td>4</td>
           <td>2010-10-05T00:00:00.000Z</td>
           <td>12</td>
         </tr>
-        <tr>
-          <th scope="row"><img src="https://statics.lesinrocks.com/content/thumbs/uploads/2020/01/30/1450069/width-1125-height-612/onepiece-width_1306_height_708_x_166_y_60.jpg" class="img-fluid" alt="Responsive image" style= " width: 50px;
-          height: 70px"></th></th>
-          <td>PFFF</td>
-          <td>Teffff</td>
-          <td>BIMMM</td>
-          <td>2</td>
-          <td>2010-10-05T00:00:00.000Z</td>
-          <td>2</td>
-        </tr>
+      <% end %>
+      <% end %>
+      
+
       </tbody>
     </table>
   </div>
