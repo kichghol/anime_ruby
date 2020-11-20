@@ -11,8 +11,28 @@ class AnimeController < ApplicationController
     @anime= animes.first
   end
 
+  def signup
+  end
+
+	def success
+		token = getToken(params[:username], params[:password], params[:password_confirmation])
+		puts "iciAAIAIAI"
+		puts params[:username]
+		puts token["auth_token"]
+	end
+
 
  private
+	def getToken(name, password, confirmation)
+		response = Excon.post("https://animelist-api.herokuapp.com/api/v1/signup",
+			:body => "name=#{URI.encode(name)}&password=#{URI.encode(password)}&rights=1&password_confirmation=#{URI.encode(confirmation)}",
+			:headers => { "Content-Type" => "application/x-www-form-urlencoded" })
+    
+		puts response.status
+		return nil if response.status != 201
+    return JSON.parse(response.body)
+  end
+
   def request_api(url)
     response = Excon.get(
       url,
