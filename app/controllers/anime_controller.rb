@@ -5,8 +5,7 @@ class AnimeController < ApplicationController
         :title => "jimyy"
       },
 
-      {
-        :title => "nora"
+      {:title => "nora"
 
       }
     ]
@@ -20,7 +19,8 @@ class AnimeController < ApplicationController
       flash[:alert] = 'Animé introuvable'
       return render action: :index
     end
-    @anime= animes.first
+    @animes= animes
+    
   end
 
 
@@ -37,8 +37,9 @@ class AnimeController < ApplicationController
     return JSON.parse(response.body)
   end
   def find_anime(title)
+    puts title
     request_api(
-      "http://localhost:5000/api/v1/animes/#{URI.encode(title)}"
+      "https://animelist-api.herokuapp.com/api/v1/animes?title=#{URI.encode(title)}"
     )
   end
 
