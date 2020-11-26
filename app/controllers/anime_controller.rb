@@ -34,16 +34,19 @@ class AnimeController < ApplicationController
   end 
 
   def signinSuccess
+    @cache = ActiveSupport::Cache::MemoryStore.new() if @cache.nil?
     token = getSigninToken(params[:username], params[:password])
-    puts "TEST150000"
-		puts params[:username]
-		puts token["auth_token"]
+    if token
+      Rails.cache.write('currentToken', token["auth_token"])
+    end
  end
 
 	def success
     @cache = ActiveSupport::Cache::MemoryStore.new() if @cache.nil?
 		token = getToken(params[:username], params[:password], params[:password_confirmation])
-    Rails.cache.write('currentToken', token["auth_token"])
+    if token
+      Rails.cache.write('currentToken', token["auth_token"])
+    end
 	end
 
 
