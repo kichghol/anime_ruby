@@ -1,0 +1,36 @@
+<div class="container">
+<h1>Add anime</h1>
+<%= form_with(url: add_success_path, method: 'post', local: true) do %>
+  <div class="form-group row">
+		<%= label_tag :title, 'Title '%>
+    <%= text_field_tag :title, nil, placeholder: 'Naruto', class: 'form-control', :required => true %>
+  </div>
+  <div class="form-group row">
+		<%= label_tag :author, 'Author '%>
+			<%= text_field_tag :author, nil, placeholder: 'Masashi Kishimoto', class: 'form-control', :required => true %>
+  </div>
+  <div class="form-group row">
+		<%= label_tag :genre, 'Genre '%>
+			<%= text_field_tag :genre, nil, placeholder: 'Shonen', class: 'form-control', :required => true %>
+  </div>
+  <div class="form-group row">
+		<%= label_tag :rating, 'Rating '%>
+			<%= text_field_tag :rating, nil, placeholder: '', class: 'form-control', :required => true %>
+  </div>
+  <div class="form-group row">
+		<%= label_tag :releasedate, 'Release date '%>
+			<%= date_field_tag :releasedate, nil, placeholder: '', class: 'form-control', :required => true %>
+  </div>
+  <div class="form-group row">
+		<%= label_tag :episodenumber, 'Number of episodes '%>
+			<%= text_field_tag :episodenumber, nil, placeholder: '', class: 'form-control', :required => true %>
+  </div>
+  <div class="form-group row">
+		<%= label_tag :image, 'Image url '%>
+			<%= text_field_tag :image, nil, placeholder: '', class: 'form-control', :required => true %>
+  </div>
+  <div class="form-group row">
+			<%= button_tag 'Add Anime', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>

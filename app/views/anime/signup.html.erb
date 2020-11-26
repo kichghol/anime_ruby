@@ -3,21 +3,15 @@
 <%= form_with(url: success_path, method: 'post', local: true) do %>
   <div class="form-group row">
 		<%= label_tag :username, 'Username '%>
-    <div class="col-sm-10">
-			<%= text_field_tag :username, nil, placeholder: 'John', class: 'form-control' %>
-    </div>
+			<%= text_field_tag :username, nil, placeholder: 'John', class: 'form-control', :required => true %>
   </div>
   <div class="form-group row">
 		<%= label_tag :password, 'Password'%>
-    <div class="col-sm-10">
-			<%= password_field_tag :password, nil, placeholder: '', class: 'form-control' %>
-    </div>
+			<%= password_field_tag :password, nil, placeholder: '', class: 'form-control', :required => true %>
   </div>
   <div class="form-group row">
 		<%= label_tag :password_confirmation, 'Password Confirmation'%>
-    <div class="col-sm-10">
-			<%= password_field_tag :password_confirmation, nil, placeholder: '', class: 'form-control' %>
-    </div>
+			<%= password_field_tag :password_confirmation, nil, placeholder: '', class: 'form-control', :required => true %>
     </div>
   </div>
   <div class="form-group row">

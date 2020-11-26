@@ -15,6 +15,12 @@ class AnimeController < ApplicationController
 
   def add
   end
+  def add_success
+    puts 'params'
+    puts params
+    puts params[:title]
+    addAnime(params, 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOSwiZXhwIjoxNjA2NDcyMTcwfQ.odd8a4XRatgGhmFWLOLtm5yqkpykwUQTKw3ec06_NIU')
+  end
   
   def search
     animes = find_anime(params[:anime])
@@ -38,6 +44,22 @@ class AnimeController < ApplicationController
 
 
  private
+  
+  def addAnime(anime, token)
+    puts "animeeee"
+    puts anime
+    response = Excon.post("https://animelist-api.herokuapp.com/api/v1/animes",
+      :body => "title=#{URI.encode(anime[:title])}&author=#{URI.encode(anime[:author])}&genre=#{URI.encode(anime[:genre])}&rating=#{URI.encode(anime[:rating])}&releasedate=#{URI.encode(anime[:releasedate])}&episodenumber=#{URI.encode(anime[:episodenumber])}&image=#{URI.encode(anime[:image])}",
+			:headers => { "Content-Type" => "application/x-www-form-urlencoded", 'Authorization' => "Bearer #{URI.encode(token)}" })
+
+    puts "STATUS DE LA REPOONSE ADD ANIME"
+    puts response.status
+    puts response.body
+		return nil if response.status != 201
+    return JSON.parse(response.body)
+  end
+
+
 	def getToken(name, password, confirmation)
 		response = Excon.post("https://animelist-api.herokuapp.com/api/v1/signup",
 			:body => "name=#{URI.encode(name)}&password=#{URI.encode(password)}&rights=1&password_confirmation=#{URI.encode(confirmation)}",
