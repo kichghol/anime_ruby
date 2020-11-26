@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/signup' => 'anime#signup'
   get '/add' => 'anime#add'
 
-  post '/success' => 'anime#success'
   post '/add_success' => 'anime#add_success'
+  get '/signin' => 'anime#signin'
+  post '/success' => 'anime#success'
+  post '/signinSuccess' => 'anime#signinSuccess'
 end
