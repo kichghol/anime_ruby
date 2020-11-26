@@ -5,10 +5,12 @@ class AnimeController < ApplicationController
   def add
   end
   def add_success
+    @cache = ActiveSupport::Cache::MemoryStore.new() if @cache.nil?
     puts 'params'
     puts params
     puts params[:title]
-    if addAnime(params, 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOSwiZXhwIjoxNjA2NDcyMTcwfQ.odd8a4XRatgGhmFWLOLtm5yqkpykwUQTKw3ec06_NIU')
+    token = Rails.cache.read('currentToken')
+    if addAnime(params, token)
       @text="Successfully added"
     else
       @text="Not connected"
@@ -39,10 +41,9 @@ class AnimeController < ApplicationController
  end
 
 	def success
+    @cache = ActiveSupport::Cache::MemoryStore.new() if @cache.nil?
 		token = getToken(params[:username], params[:password], params[:password_confirmation])
-		puts "iciAAIAIAI"
-		puts params[:username]
-		puts token["auth_token"]
+    Rails.cache.write('currentToken', token["auth_token"])
 	end
 
 
