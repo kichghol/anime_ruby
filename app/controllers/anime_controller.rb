@@ -12,6 +12,9 @@ class AnimeController < ApplicationController
 
 
   end
+
+  def add
+  end
   
   def search
     animes = find_anime(params[:anime])
