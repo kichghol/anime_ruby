@@ -10,7 +10,7 @@ class AnimeController < ApplicationController
     puts params
     puts params[:title]
     token = Rails.cache.read('currentToken')
-    if addAnime(params, token)
+    if token && addAnime(params, token)
       @text="Successfully added"
     else
       @text="Not connected"
