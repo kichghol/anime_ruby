@@ -1,16 +1,5 @@
 class AnimeController < ApplicationController
   def index
-    @list = [
-      { 
-        :title => "jimyy"
-      },
-
-      {:title => "nora"
-
-      }
-    ]
-
-
   end
 
   def add
@@ -19,7 +8,11 @@ class AnimeController < ApplicationController
     puts 'params'
     puts params
     puts params[:title]
-    addAnime(params, 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOSwiZXhwIjoxNjA2NDcyMTcwfQ.odd8a4XRatgGhmFWLOLtm5yqkpykwUQTKw3ec06_NIU')
+    if addAnime(params, 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOSwiZXhwIjoxNjA2NDcyMTcwfQ.odd8a4XRatgGhmFWLOLtm5yqkpykwUQTKw3ec06_NIU')
+      @text="Successfully added"
+    else
+      @text="Not connected"
+    end
   end
   
   def search
