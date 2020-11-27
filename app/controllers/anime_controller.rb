@@ -39,6 +39,9 @@ class AnimeController < ApplicationController
       @text="Not connected"
     end
 	end
+  def catalog
+    @animes = all_animes()
+  end   
 
   def signup
   end
@@ -52,6 +55,11 @@ class AnimeController < ApplicationController
     if token
       Rails.cache.write('currentToken', token["auth_token"])
     end
+    puts "TEST150000"
+		puts params[:username]
+    puts token["auth_token"]
+
+    # redirect_to '/search'
  end
 
 	def success
@@ -128,6 +136,12 @@ class AnimeController < ApplicationController
     puts title
     request_api(
       "https://animelist-api.herokuapp.com/api/v1/animes?title=#{URI.encode(title)}"
+    )
+  end
+
+  def all_animes()
+    request_api(
+      "https://animelist-api.herokuapp.com/api/v1/animes"
     )
   end
 
