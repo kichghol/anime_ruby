@@ -37,6 +37,7 @@ class AnimeController < ApplicationController
       @text="Successfully added"
     else
 			puts "NOT DELETED"
+			redirect_to ("/signin")
       @text="Not connected"
     end
 	end
