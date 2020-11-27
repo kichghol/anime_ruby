@@ -48,6 +48,12 @@ class AnimeController < ApplicationController
   def signup
   end
 
+  def signout
+    @cache = ActiveSupport::Cache::MemoryStore.new()
+    Rails.cache.write('currentToken', nil)
+    redirect_back(fallback_location: root_path)
+  end
+
   def signin 
   end 
 
