@@ -1,23 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 mt-5">
-    <div class="control">
-      <label class="radio">
-        <input type="radio" name="answer">
-        Yes
-      </label>
-      <label class="radio">
-        <input type="radio" name="answer">
-        No
-      </label>
-  </div>
-    <div class="col-lg-12 mt-5">
       <% if flash[:alert] %>
         <div class="alert alert-warning"><%= flash[:alert] %></div>
       <% end %>
 
       <div class="mx-auto mt-5" style="width: 400px">
-        <%= form_with(url: search_path, method: 'get', local: true) do %>
+        <%= form_with(url: search_path, method: 'get', local: true) do |f| %>
+					<%= f.select :searchBy, [["Title", "title"], ["Author", "author"], ["Minimum rate", "rate_sup" ], ["Maximum rate", "rate_inf" ], ["Maximum number of episode", "episode_inf" ], ["Minimum number of episode", "episode_sup" ], ["Minimum date", "date_sup" ], ["Maxmimum date", "date_inf" ]], {}, {class: "form-control"} %>
+
+		
+
           <div class="form-group">
             <%= label_tag :anime, 'Search for an Anime '%>
             <%= text_field_tag :anime, nil, placeholder: 'Eg. Naruto', class: 'form-control' %>

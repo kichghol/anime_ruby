@@ -1,5 +1,6 @@
 class AnimeController < ApplicationController
   def index
+		puts "cb de fis"
   end
 
   def add
@@ -14,11 +15,14 @@ class AnimeController < ApplicationController
       @text="Successfully added"
     else
       @text="Not connected"
+			redirect_to ("/signin")
     end
   end
   
   def search
-    animes = find_anime(params[:anime])
+    puts "HELLooo"
+    puts params
+    animes = find_anime(params[:anime], params[:searchBy])
     unless animes
       flash[:alert] = 'Animé introuvable'
       return render action: :index
@@ -36,6 +40,7 @@ class AnimeController < ApplicationController
       @text="Successfully added"
     else
 			puts "NOT DELETED"
+			redirect_to ("/signin")
       @text="Not connected"
     end
 	end
@@ -44,6 +49,12 @@ class AnimeController < ApplicationController
   end   
 
   def signup
+  end
+
+  def signout
+    @cache = ActiveSupport::Cache::MemoryStore.new()
+    Rails.cache.write('currentToken', nil)
+    redirect_back(fallback_location: root_path)
   end
 
   def signin 
@@ -132,10 +143,16 @@ class AnimeController < ApplicationController
 		return nil if response.status != 200
     return JSON.parse(response.body)
   end
-  def find_anime(title)
-    puts title
+  def find_anime(term, searchBy)
+    puts term
     request_api(
-      "https://animelist-api.herokuapp.com/api/v1/animes?title=#{URI.encode(title)}"
+      "https://animelist-api.herokuapp.com/api/v1/animes?#{URI.encode(searchBy)}=#{URI.encode(term)}"
+    )
+  end
+
+  def all_animes()
+    request_api(
+      "https://animelist-api.herokuapp.com/api/v1/animes"
     )
   end
 

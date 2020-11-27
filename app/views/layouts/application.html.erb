@@ -16,18 +16,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/signup">Sign up <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/signin">Sing in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/add">Add animes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/catalog">Catalog</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/add">Add animes</a>
+            </li>
+          <% if !@connected %>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Sign up <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signin">Sign in</a>
+            </li>
+        <% end %>
+          <% if @connected %>
+            <li class="nav-item">
+              <a class="nav-link" href="/signout">Sign Out</a>
+            </li>
+        <% end %>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalog">Catalog</a>
+            </li>
         </ul>
       </div>
     </nav>
