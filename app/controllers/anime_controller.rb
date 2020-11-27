@@ -27,6 +27,19 @@ class AnimeController < ApplicationController
     
   end
 
+	def destroy
+    @cache = ActiveSupport::Cache::MemoryStore.new() if @cache.nil?
+    token = Rails.cache.read('currentToken')
+    if token && deleteAnime(params[:id], token)
+			puts "DELETED"
+			redirect_back(fallback_location: root_path)
+      @text="Successfully added"
+    else
+			puts "NOT DELETED"
+      @text="Not connected"
+    end
+	end
+
   def signup
   end
 
@@ -52,6 +65,16 @@ class AnimeController < ApplicationController
 
 
  private
+
+	def deleteAnime(id, token)
+    response = Excon.delete("https://animelist-api.herokuapp.com/api/v1/animes/#{URI.encode(id)}",
+			:headers => { "Content-Type" => "application/x-www-form-urlencoded", 'Authorization' => "Bearer #{URI.encode(token)}" })
+		puts "STATUS"
+		puts response.status
+		return nil if response.status != 204
+    return true
+	end
+		
   
   def addAnime(anime, token)
     puts "animeeee"

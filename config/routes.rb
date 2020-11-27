@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get '/signin' => 'anime#signin'
   post '/success' => 'anime#success'
   post '/signinSuccess' => 'anime#signinSuccess'
+
+  delete '/destroy' => 'anime#destroy'
 end

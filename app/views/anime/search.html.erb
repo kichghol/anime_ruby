@@ -9,6 +9,7 @@
       <th scope="col">Rating</th>
       <th scope="col">Releasedate</th>
       <th scope="col">Episodnumber</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
       <td><%=anime["rating"] %></td>
       <td><%=anime["releasedate"] %></td>
       <td><%=anime["episodenumber"] %></td>
+      <td><%= link_to "Destroy", destroy_path(id: anime["id"]),method: 'delete', data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   
