@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Anime Catalog</h1>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @animes.each do |anime| %>
+  
+    <tr>
+      <td ><%= image_tag("#{anime["image"]}", :style => "max-width: 100px" ) %></td>
+      <td><%=anime["title"] %></td>
+    </tr>
+  <% end %>
+  
+  </tbody>
+  </table>
+
+</div>

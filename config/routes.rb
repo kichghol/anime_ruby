@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/search' => 'anime#search'
   get '/signup' => 'anime#signup'
   get '/add' => 'anime#add'
+  get '/catalog' => 'anime#catalog'
 
   post '/add_success' => 'anime#add_success'
   get '/signin' => 'anime#signin'
