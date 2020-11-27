@@ -19,7 +19,9 @@ class AnimeController < ApplicationController
   end
   
   def search
-    animes = find_anime(params[:anime])
+    puts "HELLooo"
+    puts params
+    animes = find_anime(params[:anime], params[:searchBy])
     unless animes
       flash[:alert] = 'Animé introuvable'
       return render action: :index
@@ -140,10 +142,10 @@ class AnimeController < ApplicationController
 		return nil if response.status != 200
     return JSON.parse(response.body)
   end
-  def find_anime(title)
-    puts title
+  def find_anime(term, searchBy)
+    puts term
     request_api(
-      "https://animelist-api.herokuapp.com/api/v1/animes?title=#{URI.encode(title)}"
+      "https://animelist-api.herokuapp.com/api/v1/animes?#{URI.encode(searchBy)}=#{URI.encode(term)}"
     )
   end
 

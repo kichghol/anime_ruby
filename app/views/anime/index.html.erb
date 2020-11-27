@@ -17,7 +17,10 @@
       <% end %>
 
       <div class="mx-auto mt-5" style="width: 400px">
-        <%= form_with(url: search_path, method: 'get', local: true) do %>
+        <%= form_with(url: search_path, method: 'get', local: true) do |f| %>
+					<%= f.select :searchBy, [["Title", "title"], ["Author", "author"] ], {}, {class: "form-control"} %>
+
+
           <div class="form-group">
             <%= label_tag :anime, 'Search for an Anime '%>
             <%= text_field_tag :anime, nil, placeholder: 'Eg. Naruto', class: 'form-control' %>
