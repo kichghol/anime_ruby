@@ -1,5 +1,6 @@
 class AnimeController < ApplicationController
   def index
+		puts "cb de fis"
   end
 
   def add
