@@ -1,4 +1,17 @@
 <div class="container">
+  <div class="mx-auto mt-5 mb-5" style="width: 400px">
+    <%= form_with(url: search_path, method: 'get', local: true) do |f| %>
+      <%= f.select :searchBy, [["Title", "title"], ["Author", "author"], ["Genre", "genre"], ["Minimum rate", "rate_sup" ], ["Maximum rate", "rate_inf" ], ["Maximum number of episode", "episode_inf" ], ["Minimum number of episode", "episode_sup" ], ["Minimum date", "date_sup" ], ["Maxmimum date", "date_inf" ]], {}, {class: "form-control"} %>
+
+
+
+      <div class="form-group">
+        <%= label_tag :anime, 'Search for an Anime '%>
+        <%= text_field_tag :anime, nil, placeholder: 'Eg. Naruto', class: 'form-control' %>
+      </div>
+      <%= button_tag 'Search', class: 'btn btn-success btn-block' %>
+    <% end %>
+  </div>
   <table class="table table-dark">
   <thead>
     <tr>

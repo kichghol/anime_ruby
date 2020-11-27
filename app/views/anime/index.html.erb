@@ -7,7 +7,7 @@
 
       <div class="mx-auto mt-5" style="width: 400px">
         <%= form_with(url: search_path, method: 'get', local: true) do |f| %>
-					<%= f.select :searchBy, [["Title", "title"], ["Author", "author"], ["Minimum rate", "rate_sup" ], ["Maximum rate", "rate_inf" ], ["Maximum number of episode", "episode_inf" ], ["Minimum number of episode", "episode_sup" ], ["Minimum date", "date_sup" ], ["Maxmimum date", "date_inf" ]], {}, {class: "form-control"} %>
+					<%= f.select :searchBy, [["Title", "title"], ["Author", "author"], ["Genre", "genre"], ["Minimum rate", "rate_sup" ], ["Maximum rate", "rate_inf" ], ["Maximum number of episode", "episode_inf" ], ["Minimum number of episode", "episode_sup" ], ["Minimum date", "date_sup" ], ["Maxmimum date", "date_inf" ]], {}, {class: "form-control"} %>
 
 		
 
